@@ -13,7 +13,17 @@ const getById = async (req, res) => {
   res.status(200).json(product);
 };
 
+const create = async (req, res) => {
+  const { name } = req.body;
+  const product = await productsService.create({ name });
+  if (Object.keys(product).includes('isValid') && !product.isValid) {
+    return res.status(product.code).json({ message: product.message });
+  }
+  return res.status(201).json(product);
+};
+
 module.exports = {
   getAll,
   getById,
+  create,
 };

@@ -15,4 +15,6 @@ app.get('/products', rescue(Products.getAll));
 
 app.get('/products/:id', rescue(Products.getById));
 
+app.post('/products', rescue(Products.create));
+
 module.exports = app;
