@@ -7,4 +7,14 @@ const getAll = async () => {
   return products;
 };
 
-module.exports = getAll;
+// Requisito 01
+const getById = async (id) => {
+  const query = 'SELECT * FROM StoreManager.products WHERE id = ?';
+  const [product] = await connection.execute(query, [id]);
+  return product[0];
+};
+
+module.exports = {
+  getAll,
+  getById,
+};

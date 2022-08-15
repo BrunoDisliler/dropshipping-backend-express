@@ -1,4 +1,5 @@
 const express = require('express');
+const rescue = require('express-rescue');
 
 const Products = require('./controllers/ProductsController');
 
@@ -10,6 +11,8 @@ app.get('/', (_request, response) => {
   response.send();
 });
 
-app.get('/products', Products);
+app.get('/products', rescue(Products.getAll));
+
+app.get('/products/:id', rescue(Products.getById));
 
 module.exports = app;
