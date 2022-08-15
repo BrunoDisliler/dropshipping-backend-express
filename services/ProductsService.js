@@ -10,7 +10,7 @@ const getById = async (id) => {
   return product;
 };
 
-// Validations
+// Requisito 04
 const validate = (name) => {
   const nameValidation = '"name" is required';
   const nameLengthValidation = '"name" length must be at least 5 characters long';
