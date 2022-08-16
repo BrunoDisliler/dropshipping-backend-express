@@ -1,6 +1,6 @@
 const sinon = require('sinon');
 const { expect } = require('chai');
-const { getAll, getById } = require('../mocks/mocks');
+const { getAll, getById, create } = require('../mocks/mocks');
 const connection = require('../../../models/connection');
 const ProductsModel = require('../../../models/ProductsModel');
 
@@ -37,7 +37,19 @@ describe('Testando a camada Model do "Product"', () => {
     });
   });
 
-  // describe('Testando a Função "create"', () => {
+  describe('Testando a Função "Create"', () => {
+    before(async () => {
+      const execute = [create];
 
-  // })
-})
+      sinon.stub(connection, 'execute').resolves(execute);
+    });
+    after(async () => {
+      connection.execute.restore();
+    });
+
+    it("Testando se retorna um array, e se o array tem apenas um objeto", async () => {
+      const response = await ProductsModel.create(create);
+      expect(response).to.be.an('object');
+    });
+  });
+});

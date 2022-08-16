@@ -2,7 +2,7 @@ const { expect } = require('chai');
 const sinon = require('sinon');
 const ProductsController = require('../../../controllers/ProductsController');
 const ProductsService = require('../../../services/ProductsService');
-const { getAll, getById } = require('../../unit/mocks/mocks');
+const { getAll, getById, create } = require('../../unit/mocks/mocks');
 
 describe('Testando a camada "controllers"', () => {
   describe('Testando a função "getAll"', () => {
@@ -52,8 +52,25 @@ describe('Testando a camada "controllers"', () => {
     });
   });
 
-  // describe('Testando a Função "create"', () => {
+  describe('Testando a Função "create"', () => {
+    const response = {};
+    const request = {};
 
-  // });
+    before(() => {
+      request.body;
 
+      response.status = sinon.stub().returns(response);
+      response.send = sinon.stub().returns();
+
+      it('...Chama status com código 400', async () => {
+        await ProductsController.create(request, response);
+        expect(response.status.calledWith(400)).to.be.equal(true);
+      });
+
+      it('...Chama send com mensagem "Dados inválidos"', async () => {
+        await ProductsController.create(request, response);
+        expect(response.send.calledWith('Dados inválids')).to.be.equal(true);
+      });
+    });
+  });
 });
