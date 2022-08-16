@@ -1,22 +1,21 @@
 const express = require('express');
-const rescue = require('express-rescue');
-
+const bodyParser = require('body-parser');
 const Products = require('./controllers/ProductsController');
 
 const app = express();
-app.use(express.json());
+app.use(bodyParser.json());
 
 // não remova esse endpoint, é para o avaliador funcionar
 app.get('/', (_request, response) => {
   response.send();
 });
 
-app.get('/products', rescue(Products.getAll));
+app.get('/products', Products.getAll);
 
-app.get('/products/:id', rescue(Products.getById));
+app.get('/products/:id', Products.getById);
 
-app.post('/products', rescue(Products.create));
+app.post('/products', Products.create);
 
-app.get('/sales', rescue(Products.getAllSales));
+// app.get('/sales', Products.getAllSales);
 
 module.exports = app;
