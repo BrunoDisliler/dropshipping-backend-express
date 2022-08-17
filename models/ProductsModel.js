@@ -14,6 +14,8 @@ const getById = async (id) => {
   return product[0];
 };
 
+// Requisito 02 em: ./testes
+
 // Requisito 03
 const create = async ({ name }) => {
   const query = 'INSERT INTO StoreManager.products(name) VALUES (?)';
@@ -21,6 +23,14 @@ const create = async ({ name }) => {
   return { id: product.insertId, name };
 };
 
+// Requisito 04 em: ./middlewares/productsMiddleware
+// Requisito 05 em: ./testes
+// Requisito 06 em: ./salesModel
+// Requisito 07 em: ./testes
+// Requisito 08 em: ./salesModel
+// Requisito 09 em: ./testes
+
+// Resquisito 10
 const updateProduct = async (id, name) => {
   const query = `UPDATE StoreManager.products
     SET name = ?
@@ -29,11 +39,19 @@ const updateProduct = async (id, name) => {
   return { id, name };
 };
 
+// Requisito 11 em: ./testes
+
+// Requisito 12
 const deleteProduct = async (id) => {
   const query = `DELETE FROM StoreManager.products
     WHERE id = ?;`;
   await connection.query(query, [id]);
 };
+
+// Requisito 13 em: ./testes
+// Requisito 14 em: ./SalesModel
+// Requisito 15 em: ./testes
+// Requisito 16 em: ./SalesModel
 
 module.exports = {
   getAll,
