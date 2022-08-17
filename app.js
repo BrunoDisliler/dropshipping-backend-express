@@ -2,6 +2,7 @@ const express = require('express');
 const rescue = require('express-rescue');
 const Products = require('./controllers/ProductsController');
 const Sales = require('./controllers/SalesController');
+const productMiddleware = require('./middlewares/productsMiddleware');
 
 const app = express();
 app.use(express.json());
@@ -15,6 +16,8 @@ app.get('/', (_request, response) => {
 app.get('/products', rescue(Products.getAll));
 app.get('/products/:id', rescue(Products.getById));
 app.post('/products', rescue(Products.create));
+app.put('/products/:id', productMiddleware.validateProduct, rescue(Products.updateProduct));
+app.delete('/products/:id', rescue(Products.deleteProduct));
 
 // Sales Routes
 app.get('/sales', rescue(Sales.getAll));
