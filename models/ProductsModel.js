@@ -53,10 +53,20 @@ const deleteProduct = async (id) => {
 // Requisito 15 em: ./testes
 // Requisito 16 em: ./SalesModel
 
+const search = async (searchTerm) => {
+  const query = `
+    SELECT * FROM products
+    WHERE name LIKE ?
+    `;
+  const [products] = await connection.execute(query, [`%${searchTerm}%`]);
+  return products;
+};
+
 module.exports = {
   getAll,
   getById,
   create,
   updateProduct,
   deleteProduct,
+  search,
 };

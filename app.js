@@ -13,6 +13,7 @@ app.get('/', (_request, response) => {
 });
 
 // Products Routes
+app.get('/products/search', rescue(Products.search));
 app.get('/products', rescue(Products.getAll));
 app.get('/products/:id', rescue(Products.getById));
 app.post('/products', rescue(Products.create));
