@@ -53,6 +53,7 @@ const deleteProduct = async (id) => {
 // Requisito 15 em: ./testes
 // Requisito 16 em: ./SalesModel
 
+// Requisito 18
 const search = async (searchTerm) => {
   const query = `
     SELECT * FROM products
